@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useTransition, config, animated } from "@react-spring/web"
+import { useTransition, animated } from "@react-spring/web"
 import { useState } from "react"
 import { useStore } from "../store/store"
 import { ambientMusic } from "../utils/sounds"

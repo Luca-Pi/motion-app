@@ -1,5 +1,5 @@
 import "./App.css"
-import React, { useState } from "react"
+import React from "react"
 import { MainCanvas } from "./canvas/canvas"
 import { HomePage } from "./pages/Home"
 import Styled from "./App.styles"

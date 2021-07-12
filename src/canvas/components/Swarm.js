@@ -3,7 +3,6 @@ import * as THREE from 'three'
 import React, { useRef, useMemo } from 'react'
 import { extend, useFrame, useThree } from '@react-three/fiber'
 import { EffectComposer, ShaderPass, RenderPass, AfterimagePass, UnrealBloomPass } from "three-stdlib"
-import { useControls } from "leva"
 
 extend({ EffectComposer, ShaderPass, RenderPass, AfterimagePass, UnrealBloomPass })
 

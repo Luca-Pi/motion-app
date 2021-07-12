@@ -10,6 +10,8 @@ const CanvasContainer = styled.div`
   z-index: -1;
 `
 
-export default {
+const styles = {
   CanvasContainer
 }
+
+export default styles

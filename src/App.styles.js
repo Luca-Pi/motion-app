@@ -26,7 +26,9 @@ const Container = styled.div`
   height: 100vh;
 `
 
-export default {
+const AppStyle = {
   GlobalStyle,
   Container,
 }
+
+export default AppStyle

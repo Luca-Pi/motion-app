@@ -7,8 +7,6 @@ import { useSpring } from "@react-spring/three"
 import * as THREE from "three"
 
 export const Hand = () => {
-  const [isAnimating, setIsAnimating] = React.useState(false)
-
   useFrame(({ clock }) => {
     group.current.position.setZ(Math.sin(clock.elapsedTime * 2) * 0.15 )
   })
@@ -33,16 +31,12 @@ export const Hand = () => {
     config: {
       duration: duration(step),
     },
-    onChange({ value }) {
-      // objectRef.current.scale.set(value.scale, value.scale, value.scale)
-    },
     onStart() {
       console.log("started");
     },
     onResolve() {
       console.log("resolved");
       objectRef.current.geometry = objectGeometry(step)
-      setIsAnimating(false)
     }
   })
 
@@ -74,6 +68,8 @@ export const Hand = () => {
         return 1300
       case 4:
         return 1800
+      default:
+        return 2000
     }
   }
 
@@ -87,7 +83,9 @@ export const Hand = () => {
       case 3:
         return new THREE.TorusGeometry( .6, 0.15, 16, 100 )
       case 4:
-        return new THREE.ConeGeometry( 1, 1, 3 );
+        return new THREE.ConeGeometry( 1, 1, 3 )
+      default:
+        return new THREE.DodecahedronBufferGeometry(1, 0)
     }
   }
 }

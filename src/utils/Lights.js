@@ -1,5 +1,4 @@
-import { useEffect, useRef } from "react"
-import { DirectionalLight } from "three"
+import { useRef } from "react"
 import { useSpring } from "@react-spring/three"
 import { useStore } from "../store/store"
 import { easeCubic } from "d3-ease"
@@ -9,14 +8,15 @@ export const Lights = () => {
   const pointRef = useRef()
   const spotRef = useRef()
   console.log(step);
-  const weut = useSpring({
+
+  useSpring({
     ...getLightsColors(step),
     onChange({ value }) {
-     // pointRef.current.color.set(value.pointColor)
+     pointRef.current.color.set(value.pointColor)
      spotRef.current.color.set(value.spotColor)
     }
   })
-  console.log(weut);
+
   return (
     <>
       <pointLight ref={pointRef} intensity={0.2} color="#fff" />
@@ -66,6 +66,11 @@ export const Lights = () => {
             duration: 3000,
             easing: easeCubic,
           },
+        }
+      default:
+        return {
+          pointColor: "#fff",
+          spotColor: "#add8e6"
         }
     }
   }

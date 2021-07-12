@@ -20,7 +20,7 @@ export const Controls = (props) => {
         previousStep()
       }
     }
-  }, []);
+  }, [nextStep, previousStep]);
 
   useFrame(() => {
     ref.current?.obj?.update()

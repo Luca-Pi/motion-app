@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react"
-import { useGLTF } from "@react-three/drei"
+import { useEffect } from "react"
 import { useControls } from "leva"
-import { extend, useFrame, useThree } from "@react-three/fiber"
+import { extend, useThree } from "@react-three/fiber"
 import { config, useSpring } from "@react-spring/three"
 
 import { Effects } from '@react-three/drei'
@@ -14,14 +13,8 @@ import { easeCubic } from "d3-ease"
 // Makes these prototypes available as "native" jsx-string elements
 extend({ EffectComposer, ShaderPass, RenderPass, AfterimagePass, UnrealBloomPass })
 
-
-
 export const Scene = () => {
-
-
-
-  const canvas = useRef()
-  const { gl, scene, camera, size } = useThree()
+  const { camera } = useThree()
   const {step} = useStore()
   const {position, rotation} = useControls({
     position: {
@@ -49,12 +42,12 @@ export const Scene = () => {
   useEffect(() => {
    camera.position.set(...position);
    camera.updateMatrixWorld()
-  }, [position])
+  }, [camera, position])
 
   useEffect(() => {
     camera.rotation.set(...rotationFromDegrees(rotation));
     camera.updateMatrixWorld()
-  }, [rotation])
+  }, [camera, rotation])
 
   return (
     <>
