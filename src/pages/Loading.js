@@ -21,7 +21,7 @@ const Main = styled(animated.div)`
 
 export const LoadingPage = () => {
   const [ isVisible, setIsVisible ] = useState(true)
-  const { nextStep } = useStore()
+  const { nextStep, setIsNavigationDisabled } = useStore()
 
   const transition = useTransition(isVisible, {
     from: {opacity: 1},
@@ -29,11 +29,11 @@ export const LoadingPage = () => {
     leave: {opacity: 0},
   })
 
-  console.log(Main)
   return transition((style, item) => item &&
     <Main style={style}>
       <StartButton onClick={() => {
         setIsVisible(false)
+        setIsNavigationDisabled(false)
         nextStep()
         ambientMusic.play()
       }}>Start</StartButton>

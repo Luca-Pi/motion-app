@@ -19,6 +19,7 @@
     "styled-components": "latest",
     "three": "latest",
     "three-stdlib": "latest",
+    "underscore": "^1.13.1",
     "web-vitals": "^1.0.1",
     "zustand": "^3.5.6"
   },

@@ -19,7 +19,7 @@ export const Hand = () => {
     console.log(scene.children[0].material.color.set("#1a1a1a"));
   }, [scene])
 
-  const {handPosition} = useControls({
+  const { handPosition } = useControls({
     handPosition: {
       value: [ -56, 0, 0 ],
       step: 0.5,
@@ -31,11 +31,7 @@ export const Hand = () => {
     config: {
       duration: duration(step),
     },
-    onStart() {
-      console.log("started");
-    },
     onResolve() {
-      console.log("resolved");
       objectRef.current.geometry = objectGeometry(step)
     }
   })

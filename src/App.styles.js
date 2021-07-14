@@ -14,10 +14,25 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     margin: 0;
     padding: 0;
+    
+    overflow: hidden;
+    cursor: none;
   }
 
   body {
     background: #f0f0f0;
+    color: white;
+  }
+
+  @font-face {
+    font-family: "ModerneSans";
+    src: local("ModerneSans"),
+    url("./fonts/Moderne-Sans.ttf") format("truetype");
+  }
+  
+  a, a:focus, a:visited {
+    color: white;
+    text-decoration: none;
   }
 `
 

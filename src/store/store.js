@@ -4,13 +4,19 @@ const STEP_LENGTH = 4
 
 export const useStore = create((set, get) => ({
   step: 0,
-  areAnimationsOngoing: false,
+  isNavigationDisabled: true,
+  setIsNavigationDisabled(isNavigationDisabled) {
+    if(isNavigationDisabled !== get().isNavigationDisabled)
+      set(() => ({ isNavigationDisabled }))
+  },
   nextStep() {
-    if (get().step < STEP_LENGTH && !get().areAnimationsOngoing)
+    console.log(get().isNavigationDisabled);
+    if (get().step < STEP_LENGTH && !get().isNavigationDisabled)
       set(state => ({step: state.step + 1}))
   },
   previousStep() {
-    if (get().step > 1 && !get().areAnimationsOngoing)
+    console.log("test");
+    if (get().step > 1 && !get().isNavigationDisabled)
       set(state => ({step: state.step - 1}))
   },
 }))
