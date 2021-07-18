@@ -7,13 +7,14 @@ import { LoadingPage } from "./pages/Loading"
 import Cursor from "./utils/Cursor"
 
 export default function App() {
-  return (
-    <Styled.Container>
-      <Styled.GlobalStyle/>
-      <Cursor />
-      <LoadingPage/>
-      <HomePage/>
+  return <>
       <MainCanvas/>
-    </Styled.Container>
-  )
+
+      <Styled.Container>
+        <Styled.GlobalStyle/>
+        <Cursor/>
+        <LoadingPage isLoading={false} />
+        <HomePage/>
+      </Styled.Container>
+  </>
 }

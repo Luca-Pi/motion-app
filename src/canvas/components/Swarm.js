@@ -1,15 +1,15 @@
-import * as THREE from 'three'
+import * as THREE from "three"
 
-import React, { useRef, useMemo } from 'react'
-import { extend, useFrame, useThree } from '@react-three/fiber'
+import React, { useRef, useMemo } from "react"
+import { extend, useFrame, useThree } from "@react-three/fiber"
 import { EffectComposer, ShaderPass, RenderPass, AfterimagePass, UnrealBloomPass } from "three-stdlib"
+import { animated } from "@react-spring/three"
 
-extend({ EffectComposer, ShaderPass, RenderPass, AfterimagePass, UnrealBloomPass })
+extend({EffectComposer, ShaderPass, RenderPass, AfterimagePass, UnrealBloomPass})
 
-export function Swarm({ count }) {
+export function Swarm({count}) {
   const mesh = useRef()
-  const light = useRef()
-  const { viewport, mouse } = useThree()
+  const {viewport, mouse} = useThree()
 
   const dummy = useMemo(() => new THREE.Object3D(), [])
   // Generate some random positions, speed factors and timings
@@ -22,17 +22,15 @@ export function Swarm({ count }) {
       const xFactor = -50 + Math.random() * 100
       const yFactor = -50 + Math.random() * 100
       const zFactor = -50 + Math.random() * 100
-      temp.push({ t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0 })
+      temp.push({t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0})
     }
     return temp
-  }, [count])
+  }, [ count ])
   // The innards of this hook will run every frame
-  useFrame((state) => {
-    // Makes the light follow the mouse
-    light.current.position.set((mouse.x * viewport.width) / 2, (mouse.y * viewport.height) / 2, 0)
+  useFrame(() => {
     // Run through the randomized data to calculate some movement
     particles.forEach((particle, i) => {
-      let { t, factor, speed, xFactor, yFactor, zFactor } = particle
+      let {t, factor, speed, xFactor, yFactor, zFactor} = particle
       // There is no sense or reason to any of this, just messing around with trigonometric functions
       t = particle.t += speed / 2
       const a = Math.cos(t) + Math.sin(t * 1) / 10
@@ -54,13 +52,11 @@ export function Swarm({ count }) {
     })
     mesh.current.instanceMatrix.needsUpdate = true
   })
+
   return (
-    <>
-      <pointLight ref={light} distance={60} intensity={0.2} color="purple" />
-      <instancedMesh ref={mesh} args={[null, null, count]}>
-        <dodecahedronBufferGeometry args={[1, 0]} />
-        <meshStandardMaterial color="black" />
-      </instancedMesh>
-    </>
+    <animated.instancedMesh ref={mesh} args={[ null, null, count ]}>
+      <dodecahedronBufferGeometry args={[ 1, 0 ]}/>
+      <meshStandardMaterial color="black"/>
+    </animated.instancedMesh>
   )
 }

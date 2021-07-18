@@ -15,11 +15,12 @@ export const MainCanvas = () => {
           position: [0,0,0]
         }}
       >
-        <Suspense fallback={null}>
           <Controls/>
           <Lights/>
-          <Scene/>
-        </Suspense>
+
+          <Suspense fallback={null} >
+            <Scene/>
+          </Suspense>
       </Canvas>
     </Styled.CanvasContainer>
   )

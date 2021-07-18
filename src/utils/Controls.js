@@ -1,6 +1,5 @@
-import { extend, useFrame, useThree } from "@react-three/fiber"
-import { OrbitControls } from "three-stdlib"
-import { useEffect, useRef } from "react"
+import { useThree } from "@react-three/fiber"
+import { useEffect } from "react"
 import { useStore } from "../store/store"
 import { useControls } from "leva"
 import { useSpring } from "@react-spring/three"
@@ -8,11 +7,8 @@ import { getStepsCameraPosition } from "./config"
 
 import * as _ from "underscore"
 
-extend({ OrbitControls })
-
-export const Controls = (props) => {
-  const ref = useRef(null)
-  const { camera, gl } = useThree()
+export const Controls = () => {
+  const { camera } = useThree()
 
   const { step, nextStep, previousStep, setIsNavigationDisabled } = useStore()
 
@@ -27,16 +23,13 @@ export const Controls = (props) => {
     },
   })
 
-  console.log("rerender?");
   useSpring({
     ...getStepsCameraPosition(step),
     onStart() {
-      console.log("start");
       setIsNavigationDisabled(true)
     },
     onResolve() {
       setIsNavigationDisabled(false)
-      console.log("done");
     },
     onChange({ value }) {
       camera.position.set(...value.cameraPosition)
@@ -68,9 +61,5 @@ export const Controls = (props) => {
     }, [500])
   }, [nextStep, previousStep]);
 
-  useFrame(() => {
-    ref.current?.obj?.update()
-  })
-
-  return <orbitControls ref={ref} args={[camera, gl.domElement]} {...props} />
+  return null
 }

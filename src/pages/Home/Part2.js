@@ -2,11 +2,12 @@ import {animated, useTransition } from "@react-spring/web"
 import styled from "styled-components"
 
 const Text = styled(animated.div)`
+  width: 700px;
   font-size: 60px;
   font-family: ModerneSans, serif;
   position: fixed;
-  top: 30%;
-  left: 60%;
+  top: 40%;
+  left: 70%;
   transform: translate(-50%, -50%);
 `
 
@@ -15,12 +16,12 @@ export default function Part2(props) {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    delay: 1000,
+    delay: props.isShown ? 2500 : 0,
     config: {
-      duration: 2000
+      duration: props.isShown ? 500 : 500
     }
   })
   return transitions(
-    (styles, item) => item && <Text style={styles}>this is a lot of text part 2</Text>
+    (styles, item) => item && <Text style={styles}>I am a developer, specialized in web application.</Text>
   )
 }

@@ -2,22 +2,21 @@ import { useFrame } from "@react-three/fiber"
 import { useStore } from "../../store/store"
 import { useGLTF } from "@react-three/drei"
 import { useControls } from "leva"
-import React, { useEffect, useRef } from "react"
-import { useSpring } from "@react-spring/three"
+import React, { useRef } from "react"
+import { useSpring, animated } from "@react-spring/three"
 import * as THREE from "three"
 
 export const Hand = () => {
-  useFrame(({ clock }) => {
-    group.current.position.setZ(Math.sin(clock.elapsedTime * 2) * 0.15 )
-  })
-  const { step } = useStore()
+  const {step} = useStore()
   const group = useRef()
   const objectRef = useRef()
-  const { scene } = useGLTF("/models/3Dhand.glb")
+  const {scene} = useGLTF("/models/3Dhand.glb")
 
-  useEffect(() => {
-    console.log(scene.children[0].material.color.set("#1a1a1a"));
-  }, [scene])
+  useFrame(({ clock}) => {
+    group.current.position.setZ(Math.sin(clock.elapsedTime * 2) * 0.15)
+    objectRef.current.rotation.x += 0.02
+    objectRef.current.rotation.y += 0.02
+  })
 
   const { handPosition } = useControls({
     handPosition: {
@@ -26,25 +25,22 @@ export const Hand = () => {
     },
   })
 
-  useSpring({
+  const { color } = useSpring({
+    ...HandStepsConfig(step),
     step,
-    config: {
-      duration: duration(step),
-    },
     onResolve() {
       objectRef.current.geometry = objectGeometry(step)
     }
   })
 
   return (
-    <group position={handPosition}>
+    <group position={handPosition} ref={group}>
       <mesh position={[ -0.4, 2.5, 1 ]} ref={objectRef} onClick={() => {
-        console.log("clicked");
+        console.log("clicked")
       }}>
-        <meshStandardMaterial color="#1a1a1a" />
+        <animated.meshStandardMaterial color={color} flatShading={true}/>
       </mesh>
       <group
-        ref={group}
         scale={25}
         color="black"
       >
@@ -53,17 +49,37 @@ export const Hand = () => {
     </group>
   )
 
-  function duration(currentStep) {
+  function HandStepsConfig(currentStep) {
     switch (currentStep) {
       case 0:
       case 1:
-        return 4000
+        return {
+          color: "black",
+          config: {
+            duration: 4500,
+          }
+        }
       case 2:
-        return 1300
+        return {
+          color: "purple",
+          config: {
+            duration: 1300,
+          }
+        }
       case 3:
-        return 1300
+        return {
+          color: "orange",
+          config: {
+            duration: 1300,
+          }
+        }
       case 4:
-        return 1800
+        return {
+          color: "#ff0000",
+          config: {
+            duration: 1500,
+          }
+        }
       default:
         return 2000
     }
@@ -73,15 +89,14 @@ export const Hand = () => {
     switch (currentStep) {
       case 0:
       case 1:
-        return new THREE.DodecahedronBufferGeometry(1, 0)
+        return new THREE.DodecahedronBufferGeometry(.8, 0)
       case 2:
-        return new THREE.OctahedronGeometry(1, 0)
       case 3:
-        return new THREE.TorusGeometry( .6, 0.15, 16, 100 )
+        return new THREE.OctahedronGeometry(.7, 4)
       case 4:
-        return new THREE.ConeGeometry( 1, 1, 3 )
+        return new THREE.ConeGeometry(.7, 1, 3)
       default:
-        return new THREE.DodecahedronBufferGeometry(1, 0)
+        return new THREE.DodecahedronBufferGeometry(.5, 0)
     }
   }
 }

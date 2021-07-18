@@ -2,16 +2,15 @@ import { animated, useTransition } from "@react-spring/web"
 import styled from "styled-components"
 
 const Text = styled(animated.div)`
-  text-align: center;
-  font-size: 35px;
+  font-size: 60px;
   font-family: ModerneSans, serif;
   position: fixed;
-  top: 58%;
-  left: 32%;
-  transform: translate(-50%, -50%) rotateZ(54deg);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 
-export default function Part3(props) {
+export default function Part4(props) {
   const transitions = useTransition(props.isShown, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
@@ -22,6 +21,6 @@ export default function Part3(props) {
     }
   })
   return transitions(
-    (styles, item) => item && <Text style={styles}>This was made with React and ThreeJS.</Text>
+    (styles, item) => item && <Text style={styles}>Hope you like it!</Text>
   )
 }

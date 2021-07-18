@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 const FirstText = styled(animated.div)`
   font-size: 60px;
+  text-align: center;
   font-family: ModerneSans, serif;
   position: fixed;
   top: 50%;
@@ -24,6 +25,6 @@ export default function Intro(props) {
       }
     }
   })
-  return <FirstText style={styles}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</FirstText>
+  return <FirstText style={styles}>Welcome, I am glad to see you there.</FirstText>
 
 }

@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: #f0f0f0;
     color: white;
+    font-family: ModerneSans, serif;
   }
 
   @font-face {
