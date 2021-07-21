@@ -1,7 +1,6 @@
 import { useFrame } from "@react-three/fiber"
 import { useStore } from "../../store/store"
 import { useGLTF } from "@react-three/drei"
-import { useControls } from "leva"
 import React, { useRef } from "react"
 import { useSpring, animated } from "@react-spring/three"
 import * as THREE from "three"
@@ -18,13 +17,6 @@ export const Hand = () => {
     objectRef.current.rotation.y += 0.02
   })
 
-  const { handPosition } = useControls({
-    handPosition: {
-      value: [ -56, 0, 0 ],
-      step: 0.5,
-    },
-  })
-
   const { color } = useSpring({
     ...HandStepsConfig(step),
     step,
@@ -34,7 +26,7 @@ export const Hand = () => {
   })
 
   return (
-    <group position={handPosition} ref={group}>
+    <group position={[ -56, 0, 0 ]} ref={group}>
       <mesh position={[ -0.4, 2.5, 1 ]} ref={objectRef} onClick={() => {
         console.log("clicked")
       }}>

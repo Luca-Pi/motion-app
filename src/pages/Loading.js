@@ -26,10 +26,10 @@ const Main = styled(animated.div)`
   align-items: center;
 `
 
-export const LoadingPage = ({isLoading}) => {
+export const LoadingPage = ({ isLoading }) => {
   console.log(isLoading ? "loading" : "start")
   const [ isVisible, setIsVisible ] = useState(true)
-  const {nextStep, setIsNavigationDisabled} = useStore()
+  const { nextStep, setIsNavigationDisabled } = useStore()
 
   const transition = useTransition(isVisible, {
     from: {opacity: 1},

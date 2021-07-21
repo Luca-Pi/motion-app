@@ -22,6 +22,6 @@ export default function Part2(props) {
     }
   })
   return transitions(
-    (styles, item) => item && <Text style={styles}>I am a developer, specialized in web application.</Text>
+    (styles, item) => item && <Text style={styles}>I am a developer, specialized in web applications.</Text>
   )
 }

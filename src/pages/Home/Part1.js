@@ -1,4 +1,4 @@
-import { animated, useTransition } from "@react-spring/web"
+import { animated, useSpring, useTransition } from "@react-spring/web"
 import styled from "styled-components"
 
 const Text = styled(animated.div)`
@@ -47,6 +47,7 @@ export default function Part1(props) {
         }
     }
   }
+
 
   const transitions = useTransition(props.isShown, {
     from: {opacity: 0},

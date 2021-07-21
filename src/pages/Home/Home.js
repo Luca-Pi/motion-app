@@ -1,15 +1,15 @@
 import { useState } from "react"
 import { useStore } from "../../store/store"
-import Intro from "./Part0"
+import Intro from "./Intro"
 import Part1 from "./Part1"
 import Part2 from "./Part2"
 import Part3 from "./Part3"
-import Styled from "./Home.styles"
-import ScrollIcon from "./ScrollIcon"
 import Part4 from "./Part4"
+import ScrollIcon from "./ScrollIcon"
+import Styled from "./Home.styles"
 
 export const HomePage = () => {
-  const {step} = useStore()
+  const { step } = useStore()
   const [ isIntroFinished, setIsIntroFinished ] = useState(false)
 
   return (

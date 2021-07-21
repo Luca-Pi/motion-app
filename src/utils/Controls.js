@@ -1,7 +1,6 @@
 import { useThree } from "@react-three/fiber"
 import { useEffect } from "react"
 import { useStore } from "../store/store"
-import { useControls } from "leva"
 import { useSpring } from "@react-spring/three"
 import { getStepsCameraPosition } from "./config"
 
@@ -12,16 +11,7 @@ export const Controls = () => {
 
   const { step, nextStep, previousStep, setIsNavigationDisabled } = useStore()
 
-  const { position, rotation } = useControls({
-    position: {
-      value: [ 0,0,0 ],
-      step: 0.1,
-    },
-    rotation: {
-      value: [ 15, -80, -70 ],
-      step: 5,
-    },
-  })
+  const rotationFromDegrees = (rotation) => rotation.map(degrees => degrees * (Math.PI / 180))
 
   useSpring({
     ...getStepsCameraPosition(step),
@@ -37,18 +27,6 @@ export const Controls = () => {
       camera.updateMatrixWorld()
     }
   })
-
-  const rotationFromDegrees = (rotation) => rotation.map(degrees => degrees * (Math.PI / 180))
-
-  useEffect(() => {
-    camera.position.set(...position);
-    camera.updateMatrixWorld()
-  }, [camera, position])
-
-  useEffect(() => {
-    camera.rotation.set(...rotationFromDegrees(rotation));
-    camera.updateMatrixWorld()
-  }, [camera, rotation])
 
   useEffect(() => {
     window.onmousewheel = _.debounce(({ deltaY }) => {
