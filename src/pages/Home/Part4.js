@@ -21,6 +21,6 @@ export default function Part4(props) {
     }
   })
   return transitions(
-    (styles, item) => item && <Text style={styles}>Hope you like it!</Text>
+    (styles, item) => item && <Text style={styles}>Répondrez-vous à l'appel ?</Text>
   )
 }

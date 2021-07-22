@@ -25,6 +25,6 @@ export default function Intro(props) {
       }
     }
   })
-  return <FirstText style={styles}>Welcome, I am glad to see you here.</FirstText>
+  return <FirstText style={styles}>Bienvenue, je suis heureux de vous voir.</FirstText>
 
 }

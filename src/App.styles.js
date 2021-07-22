@@ -22,13 +22,13 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: #f0f0f0;
     color: white;
-    font-family: ModerneSans, serif;
+    font-family: Roboto, serif;
   }
 
   @font-face {
     font-family: "ModerneSans";
     src: local("ModerneSans"),
-    url("./fonts/Moderne-Sans.ttf") format("truetype");
+    url("./fonts/Prime-Regular.otf") format("truetype");
   }
   
   a, a:focus, a:visited {

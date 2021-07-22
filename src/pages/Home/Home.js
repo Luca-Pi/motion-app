@@ -15,10 +15,10 @@ export const HomePage = () => {
   return (
     <Styled.Main>
       <Styled.Header>
-        <h2>Luca Pilloni</h2>
+        <h2>Demo technique</h2>
         <nav>
-          <button>About me</button>
-          <button>Experiences</button>
+          <button>Le jeu</button>
+          <button>Inscription</button>
           <button>Blog</button>
           <button>Contact</button>
         </nav>

@@ -5,7 +5,7 @@ const Text = styled(animated.div)`
   width: 600px;
   line-height: 1.2em;
   text-align: center;
-  font-size: 50px;
+  font-size: 60px;
   font-weight: 700;
   position: fixed;
   color: white;
@@ -57,6 +57,6 @@ export default function Part1(props) {
 
   })
   return transitions(
-    (styles, item) => item && <Text style={styles}>My name is Luca and this is my portfolio.</Text>
+    (styles, item) => item && <Text style={styles}>Votre aventure n'attend que vous</Text>
   )
 }
