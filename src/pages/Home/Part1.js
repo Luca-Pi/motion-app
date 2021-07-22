@@ -1,4 +1,4 @@
-import { animated, useSpring, useTransition } from "@react-spring/web"
+import { animated, useTransition } from "@react-spring/web"
 import styled from "styled-components"
 
 const Text = styled(animated.div)`
