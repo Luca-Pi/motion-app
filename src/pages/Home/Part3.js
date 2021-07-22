@@ -23,6 +23,6 @@ export default function Part3(props) {
     }
   })
   return transitions(
-    (styles, item) => item && <Text style={styles}>Et éternellement captivant</Text>
+    (styles, item) => item && <Text style={styles}>Et éternellement captivant...</Text>
   )
 }

@@ -57,6 +57,6 @@ export default function Part1(props) {
 
   })
   return transitions(
-    (styles, item) => item && <Text style={styles}>Votre aventure n'attend que vous</Text>
+    (styles, item) => item && <Text style={styles}>Votre aventure n'attend que vous...</Text>
   )
 }
