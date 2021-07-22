@@ -50,14 +50,44 @@ const Scroll = styled(animated.div)`
 `
 
 export default function ScrollIcon(props) {
+  const delay = (isShown, isIntroFinished) => {
+    switch (true) {
+      case !isIntroFinished:
+        return {
+          delay: 8000,
+          config: {
+            duration: 2000
+          }
+        }
+      case isShown:
+        return {
+          delay: 6000,
+          config: {
+            duration: 2000
+          }
+        }
+      case !isShown:
+        return {
+          delay: 0,
+          config: {
+            duration: 500
+          }
+        }
+      default:
+        return {
+          delay: 0,
+          config: {
+            duration: 500
+          }
+        }
+    }
+  }
+
   const transitions = useTransition(props.isShown, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    delay: props.isShown ? 6000 : 0,
-    config: {
-      duration:  props.isShown ? 2000 : 1000
-    }
+    ...delay(props.isShown, props.isIntroFinished)
   })
 
   return transitions(

@@ -28,7 +28,7 @@ export const HomePage = () => {
         <Part2 isShown={step === 2}/>
         <Part3 isShown={step === 3}/>
         <Part4 isShown={step === 4}/>
-        <ScrollIcon isShown={step === 1 && isIntroFinished} />
+        <ScrollIcon isShown={step === 1} isIntroFinished={isIntroFinished} />
     </Styled.Main>
   )
 }
